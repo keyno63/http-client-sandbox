@@ -1,5 +1,4 @@
 val springVersion = "2.4.0"
-//val springVersion = "2.3.4.RELEASE"
 
 lazy val base = (project in file("."))
   .settings(
@@ -13,7 +12,12 @@ lazy val `spring-web-flux` = (project in file("./java/spring-web-flux"))
   .settings(
     libraryDependencies ++= Seq(
       "org.springframework.boot" % "spring-boot-starter-webflux"
-    ).map(_ % springVersion)
+    ).map(_                         % springVersion) ++
+      Seq(
+        "org.springframework.boot"  % "spring-boot-starter-test"       % springVersion   % Test,
+        "org.springframework.cloud" % "spring-cloud-contract-wiremock" % "2.2.5.RELEASE" % Test
+          excludeAll "org.junit.vintage:junit-vintage-engine"
+      )
   )
 
 addCommandAlias("fmt", "all scalafmtSbt scalafmt test:scalafmt")
