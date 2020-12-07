@@ -1,4 +1,5 @@
 val springVersion = "2.4.0"
+val okhttpVersion = "4.9.0"
 
 lazy val base = (project in file("."))
   .settings(
@@ -18,6 +19,17 @@ lazy val `spring-web-flux` = (project in file("./java/spring-web-flux"))
         "org.springframework.cloud" % "spring-cloud-contract-wiremock" % "2.2.5.RELEASE" % Test
           excludeAll "org.junit.vintage:junit-vintage-engine"
       )
+  )
+
+lazy val `okhttp` = (project in file("./java/okhttp"))
+  .settings(
+    libraryDependencies ++= Seq(
+      "com.squareup.okhttp3" % "okhttp"
+    ).map(_   % okhttpVersion) ++
+      Seq(
+        "org.junit.jupiter" % "junit-jupiter-api" % "5.7.0",
+        "org.assertj"       % "assertj-core"      % "3.18.1"
+      ).map(_ % Test)
   )
 
 addCommandAlias("fmt", "all scalafmtSbt scalafmt test:scalafmt")
