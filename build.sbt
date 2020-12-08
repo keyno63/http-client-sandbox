@@ -25,7 +25,10 @@ lazy val `okhttp` = (project in file("./java/okhttp"))
   .settings(
     libraryDependencies ++= Seq(
       "com.squareup.okhttp3" % "okhttp"
-    ).map(_   % okhttpVersion) ++
+    ).map(_                          % okhttpVersion) ++
+      Seq(
+        "com.fasterxml.jackson.core" % "jackson-databind" % "2.12.0"
+      ) ++
       Seq(
         "org.junit.jupiter" % "junit-jupiter-api" % "5.7.0",
         "org.assertj"       % "assertj-core"      % "3.18.1"
