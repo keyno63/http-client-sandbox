@@ -1,13 +1,19 @@
 package com.github.keyno.okhttp.proto;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import okhttp3.*;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+import java.util.Optional;
 
 public class ProtoType {
 
-    private static String requestUrl = "http://localhost:8080/hello";
+    private final static String requestUrl = "http://localhost:8080/hello";
 
     @Test
     void test_get() throws Exception {
@@ -32,8 +38,13 @@ public class ProtoType {
         }
     }
 
+    /**
+     * POST form type.
+     *
+     * @throws Exception
+     */
     @Test
-    void test_post() throws Exception {
+    void test_post_form() throws Exception {
         Map<String, String> formParamMap = Map.of("name", "abc", "code", "123");
 
         final FormBody.Builder formBuilder = new FormBody.Builder();
