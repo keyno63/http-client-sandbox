@@ -1,6 +1,9 @@
 val springVersion = "2.4.0"
 val okhttpVersion = "4.9.0"
 
+val skinnyVersion = "3.1.0"
+val log4jVersion  = "1.7.30"
+
 lazy val base = (project in file("."))
   .settings(
     name := "http-client-sandbox",
@@ -13,7 +16,7 @@ lazy val `spring-web-flux` = (project in file("./java/spring-web-flux"))
   .settings(
     libraryDependencies ++= Seq(
       "org.springframework.boot" % "spring-boot-starter-webflux"
-    ).map(_                         % springVersion) ++
+    ).map(_ % springVersion) ++
       Seq(
         "org.springframework.boot"  % "spring-boot-starter-test"       % springVersion   % Test,
         "org.springframework.cloud" % "spring-cloud-contract-wiremock" % "2.2.5.RELEASE" % Test
@@ -25,7 +28,7 @@ lazy val `okhttp` = (project in file("./java/okhttp"))
   .settings(
     libraryDependencies ++= Seq(
       "com.squareup.okhttp3" % "okhttp"
-    ).map(_                          % okhttpVersion) ++
+    ).map(_ % okhttpVersion) ++
       Seq(
         "com.fasterxml.jackson.core" % "jackson-databind" % "2.12.0"
       ) ++
@@ -33,6 +36,20 @@ lazy val `okhttp` = (project in file("./java/okhttp"))
         "org.junit.jupiter" % "junit-jupiter-api" % "5.7.0",
         "org.assertj"       % "assertj-core"      % "3.18.1"
       ).map(_ % Test)
+  )
+
+lazy val `skinny` = (project in file("./scala/skinny"))
+  .settings(
+    libraryDependencies ++= Seq(
+      "org.skinny-framework" %% "skinny-http-client"
+    ).map(_ % skinnyVersion) ++ Seq(
+      // log
+      "org.slf4j" % "slf4j-log4j12" % log4jVersion % Test,
+      "log4j"     % "log4j"         % "1.2.17"
+    ) ++ Seq(
+      // config
+      "com.typesafe" % "config" % "1.4.1"
+    )
   )
 
 addCommandAlias("fmt", "all scalafmtSbt scalafmt test:scalafmt")
