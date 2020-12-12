@@ -52,6 +52,13 @@ lazy val `skinny` = (project in file("./scala/skinny"))
     )
   )
 
+lazy val `scalaj` = (project in file("./scala/scalaj"))
+  .settings(
+    libraryDependencies ++= Seq(
+      "org.scalaj" %% "scalaj-http" % "2.4.2"
+    )
+  )
+
 addCommandAlias("fmt", "all scalafmtSbt scalafmt test:scalafmt")
 addCommandAlias(
   "check",
