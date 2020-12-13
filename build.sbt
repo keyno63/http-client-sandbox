@@ -39,6 +39,7 @@ lazy val `okhttp` = (project in file("./java/okhttp"))
   )
 
 lazy val `skinny` = (project in file("./scala/skinny"))
+  .settings(config)
   .settings(
     libraryDependencies ++= Seq(
       "org.skinny-framework" %% "skinny-http-client"
@@ -46,18 +47,23 @@ lazy val `skinny` = (project in file("./scala/skinny"))
       // log
       "org.slf4j" % "slf4j-log4j12" % log4jVersion % Test,
       "log4j"     % "log4j"         % "1.2.17"
-    ) ++ Seq(
-      // config
-      "com.typesafe" % "config" % "1.4.1"
     )
   )
 
 lazy val `scalaj` = (project in file("./scala/scalaj"))
+  .settings(config)
   .settings(
     libraryDependencies ++= Seq(
       "org.scalaj" %% "scalaj-http" % "2.4.2"
     )
   )
+
+// config library.
+lazy val `config` = Seq(
+  libraryDependencies ++= Seq(
+    "com.typesafe" % "config" % "1.4.1"
+  )
+)
 
 addCommandAlias("fmt", "all scalafmtSbt scalafmt test:scalafmt")
 addCommandAlias(
