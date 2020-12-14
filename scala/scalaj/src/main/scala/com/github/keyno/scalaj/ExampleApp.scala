@@ -1,7 +1,7 @@
 package com.github.keyno.scalaj
 
 import com.typesafe.config._
-import scalaj.http.Http
+import scalaj.http.{Http, HttpOptions}
 
 object ExampleApp extends scala.App {
 
@@ -30,7 +30,10 @@ object ExampleApp extends scala.App {
       |""".stripMargin
 
   request = if (body.isEmpty) request.method("GET")
-    else request.postData(body).method("POST")
+    else request
+    .postData(body)
+    .header("content-type", "application/json")
+    .header("User-Agent", "") // remove UA header challenge
 
   val response = request.execute()
 
