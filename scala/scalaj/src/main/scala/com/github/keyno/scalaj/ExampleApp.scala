@@ -1,7 +1,7 @@
 package com.github.keyno.scalaj
 
 import com.typesafe.config._
-import scalaj.http.{Http, HttpOptions}
+import scalaj.http.{Http, HttpRequest}
 
 object ExampleApp extends scala.App {
 
@@ -10,10 +10,6 @@ object ExampleApp extends scala.App {
   val url               = config.getString("app.url")
   val connectionTimeout = config.getInt("app.connectionTimeOut")
   val readTimeout       = config.getInt("app.readTimeOut")
-
-  var request = Http(url)
-    //.headers(headers)
-    .timeout(connTimeoutMs = connectionTimeout, readTimeoutMs = readTimeout)
 
   // 自前の mock server 用の body.
   val body =
@@ -29,11 +25,7 @@ object ExampleApp extends scala.App {
       |}
       |""".stripMargin
 
-  request = if (body.isEmpty) request.method("GET")
-    else request
-    .postData(body)
-    .header("content-type", "application/json")
-    .header("User-Agent", "") // remove UA header challenge
+  val request = createRequest(url, body, connectionTimeout, readTimeout)
 
   val response = request.execute()
 
@@ -51,6 +43,18 @@ object ExampleApp extends scala.App {
   val bodyValue = response.body
 
   print(Response(statusCode, httpStatus, bodyValue))
+
+  def createRequest(url: String, body: String = "", connectionTimeout: Int = 5000, readTimeout: Int = 5000): HttpRequest = {
+    val baseRequest = Http(url)
+      //.headers(headers)
+      .timeout(connTimeoutMs = connectionTimeout, readTimeoutMs = readTimeout)
+
+    if (body.isEmpty) baseRequest.method("GET")
+    else baseRequest
+      .postData(body)
+      .header("content-type", "application/json")
+      .header("User-Agent", "") // remove UA header challenge
+  }
 
   case class Response(statusCode: Int, status: String, body: String)
 }
