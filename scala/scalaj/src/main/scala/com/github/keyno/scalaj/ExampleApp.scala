@@ -52,8 +52,9 @@ object ExampleApp extends scala.App {
     if (body.isEmpty) baseRequest.method("GET")
     else baseRequest
       .postData(body)
-      .header("content-type", "application/json")
-      .header("User-Agent", "") // remove UA header challenge
+
+      //.header("User-Agent", "") // remove UA header challenge
+      .headers(Seq("User-Agent" -> "", "content-type" -> "application/json"))
   }
 
   case class Response(statusCode: Int, status: String, body: String)
