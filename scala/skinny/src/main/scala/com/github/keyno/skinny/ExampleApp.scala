@@ -31,6 +31,7 @@ object ExampleApp extends scala.App {
       |""".stripMargin
 
   request.userAgent = None // User-Agent 上書き
+  //request.userAgent = Some("update ua op")
   if (body.isEmpty) request.bodyBytes = None
   else request.body(body.getBytes, "application/json")
 
