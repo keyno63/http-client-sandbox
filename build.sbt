@@ -58,6 +58,14 @@ lazy val `scalaj` = (project in file("./scala/scalaj"))
     )
   )
 
+lazy val `sttp` = (project in file("./scala/sttp"))
+  .settings(config)
+  .settings(
+    libraryDependencies ++= Seq(
+      "com.softwaremill.sttp" %% "core" % "1.5.11"
+    )
+  )
+
 // config library.
 lazy val `config` = Seq(
   libraryDependencies ++= Seq(
