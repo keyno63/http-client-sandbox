@@ -62,7 +62,7 @@ lazy val `sttp` = (project in file("./scala/sttp"))
   .settings(config)
   .settings(
     libraryDependencies ++= Seq(
-      "com.softwaremill.sttp" %% "core" % "1.5.11"
+      "com.softwaremill.sttp.client" %% "core" % "2.2.9"
     )
   )
 
