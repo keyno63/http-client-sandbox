@@ -38,4 +38,23 @@ object ExampleApp extends scala.App {
   val response = request.send()
 
   println(response.body)
+
+  val request2 = RequestT[Identity, Either[String, String], Nothing](
+    Method.POST,
+    uri"$url",
+    StringBody(body, "utf-8"),
+    //Vector(new Header("Content-Type", "application/json"), new Header("User-Agent", "override ua header")),
+    Vector(new Header("Content-Type", "application/json")),
+    asString,
+    RequestOptions(
+      followRedirects = true,
+      DefaultReadTimeout,
+      32,
+      redirectToGet = false
+    ),
+    Map()
+  )
+  val response2 = request2.send()
+
+  println(response2.body)
 }
