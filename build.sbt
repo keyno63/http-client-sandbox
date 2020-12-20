@@ -66,6 +66,12 @@ lazy val `sttp` = (project in file("./scala/sttp"))
     )
   )
 
+lazy val `akka-http` = (project in file("./scala/akka-http"))
+  .settings(config)
+  .settings(
+
+  )
+
 // config library.
 lazy val `config` = Seq(
   libraryDependencies ++= Seq(
