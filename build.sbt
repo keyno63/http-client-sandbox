@@ -72,6 +72,9 @@ lazy val `akka-http` = (project in file("./scala/akka-http"))
     libraryDependencies ++= Seq(
       "com.typesafe.akka" %% "akka-http" % "10.2.2",
       "com.typesafe.akka" %% "akka-http-testkit" % "10.1.7" % Test,
+      "com.typesafe.akka" %% "akka-actor" % "2.6.21",
+      "com.typesafe.akka" %% "akka-stream" % "2.5.21",
+      "com.typesafe.akka" %% "akka-stream-testkit" % "2.5.21" % Test,
     )
   )
 
