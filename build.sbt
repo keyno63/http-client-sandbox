@@ -1,8 +1,10 @@
 val springVersion = "2.4.0"
 val okhttpVersion = "4.9.0"
 
-val skinnyVersion = "3.1.0"
-val log4jVersion  = "1.7.30"
+val akkaVersion     = "2.6.21"
+val akkaHttpVersion = "10.2.2"
+val skinnyVersion   = "3.1.0"
+val log4jVersion    = "1.7.30"
 
 lazy val base = (project in file("."))
   .settings(
