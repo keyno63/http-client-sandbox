@@ -72,11 +72,11 @@ lazy val `akka-http` = (project in file("./scala/akka-http"))
   .settings(config)
   .settings(
     libraryDependencies ++= Seq(
-      "com.typesafe.akka" %% "akka-http"           % "10.2.2",
-      "com.typesafe.akka" %% "akka-http-testkit"   % "10.2.2" % Test,
-      "com.typesafe.akka" %% "akka-actor"          % "2.6.21",
-      "com.typesafe.akka" %% "akka-stream"         % "2.6.21",
-      "com.typesafe.akka" %% "akka-stream-testkit" % "2.6.21" % Test
+      "com.typesafe.akka" %% "akka-http"           % akkaHttpVersion,
+      "com.typesafe.akka" %% "akka-http-testkit"   % akkaHttpVersion % Test,
+      "com.typesafe.akka" %% "akka-actor"          % akkaVersion,
+      "com.typesafe.akka" %% "akka-stream"         % akkaVersion,
+      "com.typesafe.akka" %% "akka-stream-testkit" % akkaVersion     % Test
     )
   )
 
