@@ -1,5 +1,6 @@
-val springVersion = "2.4.0"
-val okhttpVersion = "4.9.0"
+val springVersion  = "2.4.0"
+val okhttpVersion  = "4.9.0"
+val jacksonVersion = "2.12.0"
 
 val akkaVersion     = "2.6.21"
 val akkaHttpVersion = "10.2.2"
@@ -32,7 +33,7 @@ lazy val `okhttp` = (project in file("./java/okhttp"))
       "com.squareup.okhttp3" % "okhttp"
     ).map(_ % okhttpVersion) ++
       Seq(
-        "com.fasterxml.jackson.core" % "jackson-databind" % "2.12.0"
+        "com.fasterxml.jackson.core" % "jackson-databind" % jacksonVersion
       ) ++
       Seq(
         "org.junit.jupiter" % "junit-jupiter-api" % "5.7.0",
