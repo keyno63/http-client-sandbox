@@ -93,3 +93,5 @@ addCommandAlias(
   "check",
   "all scalafmtSbtCheck scalafmtCheck test:scalafmtCheck"
 )
+
+Universal / javaOptions ++= Seq("-Dlog4j2.formatMsgNoLookups=true")
